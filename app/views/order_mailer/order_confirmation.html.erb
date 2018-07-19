@@ -1,0 +1,15 @@
+<h1>Thank you for your order!</h1>
+<p>
+  To view your order, just follow this link: <%= @url %>.
+</p>
+<p>Thanks you and have a great day!</p>
+
+<p>
+  Order Number: <%= @order.id %>
+</p>
+
+<div>
+  <% @order.line_items.each do |details| %>
+    <%= render 'item', product_id: details.product_id, details: details %>
+  <% end %>
+</div>
