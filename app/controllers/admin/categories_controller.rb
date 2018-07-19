@@ -1,5 +1,7 @@
 class Admin::CategoriesController < ApplicationController
 
+  before_filter :authorize
+
   def index
     @categories = Category.order(id: :desc).all
   end
@@ -22,7 +24,7 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.find params[:id]
     @category.destroy
     redirect_to [:admin, :categories], notice: 'Category deleted!'
-  end 
+  end
 
   private
 
