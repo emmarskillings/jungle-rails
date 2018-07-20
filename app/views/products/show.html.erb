@@ -3,7 +3,7 @@
   <header class="page-header">
     <h1><%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %></h1>
   </header>
- 
+
   <article class="product-detail">
 
     <div class="row">
@@ -25,6 +25,22 @@
         </dl>
       </div>
     </div>
+    <div class="dl-horizontal">
+      <table class="table table-bordered" style="margin-top: 20px">
+        <thead>
+          <tr>
+            <th>Review</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @product.reviews.each do |details| %>
+            <%= render 'review', details: details %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
 
   </article>
 
