@@ -5,4 +5,9 @@
   <td>
     <%= details.rating %>
   </td>
+  <% if current_user %>
+    <td>
+      <%= link_to fa_icon('trash'), product_review_path(product, details), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+    </td>
+  <% end %>
 </tr>

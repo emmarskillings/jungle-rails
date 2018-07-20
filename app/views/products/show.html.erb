@@ -31,12 +31,13 @@
               <tr>
                 <th>Review</th>
                 <th>Rating</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               <% if @product.reviews.any? %>
-                <% @product.reviews.each do |details| %>
-                  <%= render 'review', details: details %>
+                <% @reviews.each do |details| %>
+                  <%= render 'review', details: details, product: @product %>
                 <% end %>
               <% else %>
                 <tr>
@@ -50,18 +51,20 @@
       </div>
     </div>
     <div>
-      <%= form_for [@product, @review] do |form| %>
-        <div class="form-group">
-          <div>
-          <%= form.label :description %>
-          <%= form.text_field :description, class: 'form-control' %>
-          <div>
-        </div>
-        <div class="form-group" style="margin-top: 5px">
-          <%= form.label :rating %>
-          <%= form.select :rating, (1..5) %>
-        </div>
-        <%= form.submit 'Submit Review', class: 'btn btn-primary' %>
+      <% if current_user %>
+        <%= form_for [@product, @review] do |form| %>
+          <div class="form-group">
+            <div>
+            <%= form.label :description %>
+            <%= form.text_field :description, class: 'form-control' %>
+            <div>
+          </div>
+          <div class="form-group" style="margin-top: 5px">
+            <%= form.label :rating %>
+            <%= form.select :rating, (1..5) %>
+          </div>
+          <%= form.submit 'Submit Review', class: 'btn btn-primary' %>
+        <% end %>
       <% end %>
     </div>
 

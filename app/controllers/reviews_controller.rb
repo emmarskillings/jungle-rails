@@ -2,8 +2,6 @@ class ReviewsController < ApplicationController
 
   def create
 
-    puts params
-
     @product = Product.find params[:product_id]
     @review = @product.reviews.create(review_params)
     @review.user = current_user
@@ -14,6 +12,14 @@ class ReviewsController < ApplicationController
       render 'products/show'
     end
 
+  end
+
+  def destroy
+    @product = Product.find params[:product_id]
+    @review = Review.find params[:id]
+    @review.user = current_user
+    @review.destroy
+    redirect_to product_path(@product), notice: 'Review deleted!'
   end
 
   private
