@@ -21,7 +21,7 @@ class Admin::ProductsController < ApplicationController
       render :new
     end
   end
-
+ 
   def destroy
     @product = Product.find params[:id]
     @product.destroy
