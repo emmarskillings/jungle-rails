@@ -31,7 +31,9 @@
               <tr>
                 <th>Review</th>
                 <th>Rating</th>
-                <th></th>
+                <% if @product.reviews.any? && current_user %>
+                  <th></th>
+                <% end %>
               </tr>
             </thead>
             <tbody>
