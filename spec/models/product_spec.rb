@@ -8,7 +8,7 @@ RSpec.describe Product, type: :model do
     end
 
     it "should save when all fields filled out" do
-      @category.products.create!({
+      @category.products.create({
         name: "Random Item",
         price: 99.99,
         quantity: 10
@@ -16,43 +16,39 @@ RSpec.describe Product, type: :model do
     end
 
     it "should fail when name missing" do
-      @category.products.create! ({
+      @product = @category.products.create({
         name: nil,
         price: 99.99,
         quantity: 10
       })
-      expect(@category.products.name).to eq(nil)
-      @category.products.errors.full_messages
+      expect(@product.errors.full_messages).to include("Name can't be blank")
     end
 
     it "should fail when price missing" do
-      @category.products.create!({
+      @product = @category.products.create({
         name: "Random Item",
         price: nil,
         quantity: 10
       })
-      expect(@category.products.price).to eq(nil)
-      @category.products.errors.full_messages
+      expect(@product.errors.full_messages).to include("Price can't be blank")
     end
 
     it "should fail when quantity missing" do
-      @category.products.create!({
+      @product = @category.products.create({
         name: "Random Item",
         price: 99.99,
         quantity: nil
       })
-      expect(@category.products.quantity).to eq(nil)
-      @category.products.errors.full_messages
+      expect(@product.errors.full_messages).to include("Quantity can't be blank")
     end
 
     it "should fail when category missing" do
-      Product.create!({
+      @product = Product.create({
         name: "Random Item",
         price: 99.99,
         quantity: 10
       })
-      expect(@category).to eq(nil)
-      Product.errors.full_messages
+      expect(@product.errors.full_messages).to include("Category can't be blank")
     end
 
   end
