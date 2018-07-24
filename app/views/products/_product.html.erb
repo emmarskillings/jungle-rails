@@ -17,9 +17,11 @@
         <%= (product.reviews.reduce(0) { |sum, review| sum + review[:rating] }.to_f / product.reviews.count).round(1) %>/5
       <% end %>
     </div>
-    <%= link_to product, class: 'btn btn-default pull-right' do %>
-      Details &raquo;
-    <% end %>
+    <div id="product">
+      <%= link_to product, class: 'btn btn-default pull-right' do %>
+        Details &raquo;
+      <% end %>
+    </div>
   </footer>
 
   <aside class="price">
