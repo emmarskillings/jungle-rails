@@ -10,8 +10,6 @@ RSpec.describe User, type: :model do
         name: "User",
         email: "new@ME.com"
       })
-
-      @user = User.new
     end
 
     it "should save when all fields filled out" do
